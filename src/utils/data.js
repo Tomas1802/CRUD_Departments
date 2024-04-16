@@ -145,18 +145,15 @@ export const municipios = [
 export const departamentos = [
 {
     id: 1,
-    name: 'Departamento 1',
-    municipios: [1, 2],
+    nombre: 'Departamento 1',
 },
 {
     id: 2,
-    name: 'Departamento 2',
-    municipios: [3],
+    nombre: 'Departamento 2',
 },
 {
     id: 3,
-    name: 'Departamento 3',
-    municipios: [4, 5],
+    nombre: 'Departamento 3',
 }
 ]
 

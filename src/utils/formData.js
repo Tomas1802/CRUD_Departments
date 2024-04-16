@@ -117,12 +117,6 @@ export const tablaDepartamentos = [
     {
         header: 'Nombre',
         type: 'text',
-        value: 'name'
-    },
-    {
-        header: 'Municipios',
-        type: 'select',
-        value: 'municipios',
-        list: municipios
+        value: 'nombre'
     },
 ]
