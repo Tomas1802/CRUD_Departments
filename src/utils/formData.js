@@ -1,50 +1,47 @@
-import { departamentos, municipios, personas, sexos, viviendas } from "./data";
 
 export const tablaPersonas = [
     {
         header: 'Nombre',
         type: 'text',
-        value: 'name'
+        value: 'nombre'
     },
     {
         header: 'Teléfono',
         type: 'text',
-        value: 'phone'
+        value: 'telefono'
     },
     {
         header: 'Edad',
         type: 'text',
-        value: 'age'
+        value: 'edad'
     },
     {
         header: 'Sexo',
         type: 'find',
-        value: 'sex',
-        list: sexos
+        value: 'sexo',
+        list: "sexo",
+        listValue: []
     },
     {
         header: 'Municipio',
         type: 'find',
-        value: 'municipio',
-        list: municipios
+        value: 'municipio_id',
+        list: "municipio",
+        listValue: []
     },
     {
         header: 'Vivienda actual',
         type: 'find',
-        value: 'viviendaActual',
-        list: viviendas
+        value: 'vivienda_actual_id',
+        list: "vivienda",
+        listValue: []
     },
     {
-        header: 'Viviendas',
-        type: 'select',
-        value: 'viviendas',
-        list: viviendas
-    },
-    {
-        header: 'Cabeza de familia de',
-        type: 'select',
-        value: 'cabezaDeFamiliaDe',
-        list: personas
+        header: 'Cabeza de familia',
+        type: 'find',
+        value: 'cabeza_familia_id',
+        list: "persona",
+        listValue: []
     },
 ]
 
@@ -52,7 +49,7 @@ export const tablaViviendas = [
     {
         header: 'Nombre',
         type: 'text',
-        value: 'name'
+        value: 'nombre'
     },
     {
         header: 'Dirección',
@@ -72,14 +69,16 @@ export const tablaViviendas = [
     {
         header: 'Propietario',
         type: 'find',
-        value: 'propietario',
-        list: personas
+        value: 'propietario_id',
+        list: "persona",
+        listValue: []
     },
     {
         header: 'Municipio',
         type: 'find',
-        value: 'municipio',
-        list: municipios
+        value: 'municipio_id',
+        list: "municipio",
+        listValue: []
     },
 ]
 
@@ -87,7 +86,7 @@ export const tablaMunicipios = [
     {
         header: 'Nombre',
         type: 'text',
-        value: 'name'
+        value: 'nombre'
     },
     {
         header: 'Área',
@@ -100,16 +99,11 @@ export const tablaMunicipios = [
         value: 'presupuesto'
     },
     {
-        header: 'Viviendas',
-        type: 'select',
-        value: 'viviendas',
-        list: viviendas
-    },
-    {
         header: 'Departamento',
         type: 'find',
-        value: 'departamento',
-        list: departamentos
+        value: 'departamento_id',
+        list: "departamento",
+        listValue: []
     },
 ]
 

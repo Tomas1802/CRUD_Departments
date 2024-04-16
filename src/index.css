@@ -20,6 +20,14 @@ td{
     padding: 10px;
 }
 
+.Toastify__progress-bar,
+.Toastify__progress-bar--animated,
+.Toastify__progress-bar-theme--light,
+.Toastify__progress-bar--default{
+    background: #f1f1f1 !important;
+}
+
+
 .tab {
     width: 25%;
     padding: 10px;

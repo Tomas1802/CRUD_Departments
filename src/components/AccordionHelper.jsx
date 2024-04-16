@@ -13,10 +13,10 @@ export default function AccordionHelper(props) {
                     aria-controls="panel1-content"
                     id="panel1-header"
                 >
-                    {props.list[0].text}
+                    {props.list && props.list[0].text}
                 </AccordionSummary>
                 <AccordionDetails>
-                    {props.list.map((item, index) => {
+                    {props.list?.map((item, index) => {
                         return (
                             <div key={index}>
                                 - {item.text}

@@ -21,7 +21,37 @@ const MenuProps = {
 
 
 export default function MultipleSelectBox(props) {
+    const [lists, setLists] = React.useState({});
+    const [loading, setLoading] = React.useState(true);
     const [variantName, setVariantName] = React.useState([]);
+    
+
+    React.useEffect(() => {
+        fetchListData(props.variants).then(() => {
+            setLoading(false);
+        });
+    },[])
+
+    function fetchListData(header) {
+        return fetch(`https://tomasparra.azurewebsites.net/api/${capitalizeFirstLetter(header)}/Get${capitalizeFirstLetter(header)}s`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(data => {
+            setLists(prev => ({
+                ...prev,
+                [header.value]: data
+            }));
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     const handleChange = (event) => {
         const {
@@ -31,6 +61,7 @@ export default function MultipleSelectBox(props) {
         let duplicateRemoved = [];
 
         value.forEach((item) => {
+            console.log("item", item)
             if (duplicateRemoved.findIndex((o) => o.id === item.id) >= 0) 
             {
                 duplicateRemoved = duplicateRemoved.filter((x) => x.id === item.id);
@@ -40,9 +71,13 @@ export default function MultipleSelectBox(props) {
                 duplicateRemoved.push(item);
             }
         });
-
+        console.log("duplicateRemoved", duplicateRemoved)
         setVariantName(duplicateRemoved);
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className='w-full'>
@@ -55,17 +90,19 @@ export default function MultipleSelectBox(props) {
                 value={variantName}
                 onChange={handleChange}
                 input={<OutlinedInput label={props.title} />}
-                renderValue={(selected) => selected.map((x) => x.name).join(', ')}
+                renderValue={(selected) => selected.map((x) => x.nombre).join(', ')}
+                name={props.item.value}
                 MenuProps={MenuProps}
             >
-            {props.variants.map((variant) => (
+                {console.log("variants", props.item)}
+            {lists.undefined.map((variant) => (
                 <MenuItem key={variant.id} value={variant}>
                 <Checkbox
                     checked={
                     variantName.findIndex((item) => item.id === variant.id) >= 0
                     }
                 />
-                <ListItemText primary={variant.name} />
+                <ListItemText primary={variant.nombre} />
                 </MenuItem>
             ))}
             </Select>
