@@ -65,6 +65,9 @@ function FormHelper(props) {
         if(data.municipio_id === ""){
             data.municipio_id = null;
         }
+        if(data.cabeza_familia_id === ""){
+            data.cabeza_familia_id = null;
+        }
         console.log("data", data)
         if(props.item.id)
         {
