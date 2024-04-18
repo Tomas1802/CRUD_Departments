@@ -6,7 +6,7 @@ import TableHelper from "./components/TableHelper";
 import { tablaDepartamentos, tablaMunicipios, tablaPersonas, tablaViviendas, tablaServicios } from "./utils/formData";
 import 'react-toastify/dist/ReactToastify.css';
 import ToastifyMessage from "./components/ToastifyMessage";
-import { getRoute } from "./services/Requests";
+import { getRoute, postRouteReview } from "./services/Requests";
 
 function App() {
     const [notification, setNotification] = React.useState({});
@@ -93,7 +93,24 @@ function App() {
     const checkWork = async (name) => {
         const result = await getRoute("Revision")
 
-        setNotification({text: `Hola, soy ${name}, y yo ${result.find(r => r.nombre === name).revisado ? "revisé este trabajo" : "NO he revisado este trabajo"}`, type: `${result.find(r => r.nombre === name).revisado ? "success" : "error"}`})
+        setNotification({text: `Hola, soy ${name}, y yo ${result.find(r => r.nombre === name) ? "revisé este trabajo" : "NO he revisado este trabajo"}`, type: `${result.find(r => r.nombre === name) ? "success" : "error"}`})
+    }
+
+    const reviewWork = async (name) => {
+        const code = window.prompt("Contraseña:");
+        
+        if (code) {
+            const result = await postRouteReview({nombre: name, revisado: true}, code);
+
+            if (result) 
+            {
+                setNotification({text: "Revisión registrada correctamente", type: "success"});
+            }
+        } 
+        else 
+        {
+            setNotification({text: "Contraseña incorrecta", type: "error"});
+        }
     }
 
     return (
@@ -110,10 +127,34 @@ function App() {
                     <h1 style={{fontSize: '28px', fontWeight: 'bold'}}>Grupo 8 - Vitalit</h1>
                     <br />
                     <ol>
-                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>Tomás Parra <Button variant="contained" onClick={() => checkWork("Tomás")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button></li>
-                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>Juan Jose Ramirez <Button variant="contained" onClick={() => checkWork("Juan Jose")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button></li>
-                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>Julian Vargas <Button variant="contained" onClick={() => checkWork("Julian Vargas")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button></li>
-                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>Sebastian Medina <Button variant="contained" onClick={() => checkWork("Sebastian")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button></li>
+                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <p>Tomás Parra </p>
+                            <div>
+                                <Button variant="contained" onClick={() => checkWork("Tomás")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                            </div>
+                        </li>
+                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <p>Juan Jose Ramirez</p>
+                            <div>
+                                <Button variant="contained" onClick={() => checkWork("Juan Jose")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                            </div>
+                        </li>
+                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <p>Julian Vargas</p>
+                            <div>
+                                <Button variant="contained" onClick={() => checkWork("Julian Vargas")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                            </div>
+                        </li>
+                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <p>Sebastian Medina</p>
+                            <div>
+                                <Button variant="contained" onClick={() => checkWork("Sebastian")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                            </div>
+                        </li>
                     </ol>
                 </div> 
                 }

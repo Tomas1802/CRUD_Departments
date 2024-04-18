@@ -79,6 +79,7 @@ td{
 
 .tab {
     padding: 10px;
+    height: 40px;
 }
 
 .tab:hover{

@@ -60,3 +60,20 @@ export async function putRoute(route, data, id)
         return error;
     });
 }
+
+export async function postRouteReview(data, code)
+{
+    return await fetch(`https://tomasparra.azurewebsites.net/api/Revision/PostRevision?code=${code}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.ok)
+    .catch(error => {
+        error.error = true;
+        console.error('Error:', error);
+        return error;
+    });
+}
