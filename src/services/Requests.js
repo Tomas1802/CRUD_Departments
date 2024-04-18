@@ -1,6 +1,6 @@
 export async function getRoute(route)
 {
-    return await fetch(`https://localhost:7117/api/${route}/Get${route}s`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/${route}/Get${route}s`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     })
@@ -15,7 +15,7 @@ export async function getRoute(route)
 
 export async function getRouteNota()
 {
-    return await fetch(`https://localhost:7117/api/Revision/GetRevision`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/Revision/GetRevision`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     })
@@ -30,7 +30,7 @@ export async function getRouteNota()
 
 export async function deleteRoute(route, id)
 {
-    return await fetch(`https://localhost:7117/api/${route}/Delete${route}?id=${id}`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/${route}/Delete${route}?id=${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export async function deleteRoute(route, id)
 
 export async function postRoute(route, data)
 {
-    return await fetch(`https://localhost:7117/api/${route}/Post${route}`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/${route}/Post${route}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export async function postRoute(route, data)
 
 export async function putRoute(route, data, id)
 {
-    return await fetch(`https://localhost:7117/api/${route}/Put${route}?id=${id}`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/${route}/Put${route}?id=${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ export async function putRoute(route, data, id)
 
 export async function postRouteReview(data, code)
 {
-    return await fetch(`https://localhost:7117/api/Revision/PostRevision?code=${code}`, {
+    return await fetch(`https://tomasparra.azurewebsites.net/api/Revision/PostRevision?code=${code}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
