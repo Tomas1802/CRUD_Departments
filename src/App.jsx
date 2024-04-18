@@ -138,21 +138,21 @@ function App() {
                             <p>Juan Jose Ramirez</p>
                             <div>
                                 <Button variant="contained" onClick={() => checkWork("Juan Jose")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
-                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Juan Jose")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
                             </div>
                         </li>
                         <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                             <p>Julian Vargas</p>
                             <div>
                                 <Button variant="contained" onClick={() => checkWork("Julian Vargas")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
-                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Julian Vargas")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
                             </div>
                         </li>
                         <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
                             <p>Sebastian Medina</p>
                             <div>
                                 <Button variant="contained" onClick={() => checkWork("Sebastian")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
-                                <Button variant="contained" onClick={() => reviewWork("Tomás")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                                <Button variant="contained" onClick={() => reviewWork("Sebastian")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
                             </div>
                         </li>
                     </ol>
