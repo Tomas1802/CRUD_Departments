@@ -1,10 +1,10 @@
 export const sexos = []
 
-export const personas = [];
+export const Personas = [];
 
-export const viviendas = [];
+export const Viviendas = [];
 
-export const municipios = []
+export const Municipios = []
 
-export const departamentos = []
+export const Departamentos = []
 

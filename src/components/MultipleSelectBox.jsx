@@ -61,7 +61,6 @@ export default function MultipleSelectBox(props) {
         let duplicateRemoved = [];
 
         value.forEach((item) => {
-            console.log("item", item)
             if (duplicateRemoved.findIndex((o) => o.id === item.id) >= 0) 
             {
                 duplicateRemoved = duplicateRemoved.filter((x) => x.id === item.id);
@@ -71,7 +70,6 @@ export default function MultipleSelectBox(props) {
                 duplicateRemoved.push(item);
             }
         });
-        console.log("duplicateRemoved", duplicateRemoved)
         setVariantName(duplicateRemoved);
     };
 
@@ -94,7 +92,6 @@ export default function MultipleSelectBox(props) {
                 name={props.item.value}
                 MenuProps={MenuProps}
             >
-                {console.log("variants", props.item)}
             {lists.undefined.map((variant) => (
                 <MenuItem key={variant.id} value={variant}>
                 <Checkbox
