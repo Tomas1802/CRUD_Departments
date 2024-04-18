@@ -7,10 +7,13 @@ import { BsFillHouseFill } from "react-icons/bs";
 import { GiFamilyHouse } from "react-icons/gi";
 import { FaBuilding } from "react-icons/fa";
 import { deleteRoute } from "../services/Requests";
+import React from "react";
 
 
 
 function TableHelper(props) {
+
+    const [showConfirm, setShowConfirm] = React.useState(-1);
 
     const handleOpenModal = (data) => {
         props.setItem(data);
@@ -27,8 +30,13 @@ function TableHelper(props) {
             return;
         }
         
+        handleConfirm(-1);
         props.getData();
         props.setNotification({text: "Borrado correctamente", type: "success"});
+    }
+
+    const handleConfirm = (index) => {
+        setShowConfirm(index);
     }
 
     if (!props.data[props.selectedTab]) {
@@ -107,10 +115,15 @@ function TableHelper(props) {
                                             <FaRegEdit />
                                         </Button>
                                     </td>
-                                    <td style={{width: "30px"}}>
-                                        <Button onClick={() => handleDelete(obj)} variant="contained" style={{background: "#f0abc1", color: "#000"}}>
+                                    <td style={{width: "30px", position: "relative"}}>
+                                        <Button onClick={() => handleConfirm(index)} variant="contained" style={{background: "#f0abc1", color: "#000"}}>
                                             <RiDeleteBin5Line />
                                         </Button>
+                                        <div style={{position: "absolute", display: (showConfirm === index ? "block" : "none"), top: "0px", right: "0px", zIndex: 2, background: "#fff", padding: "10px", width: "300px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+                                            <p style={{marginBottom: "5px"}}>Confirmar acción</p>
+                                            <Button onClick={() => handleDelete(obj)} variant="contained" style={{background: "#f0abc1", color: "#000", marginRight: "10px"}}>Confirmar</Button>
+                                            <Button onClick={() => handleConfirm(-1)} variant="contained" style={{background: "#94ddde", color: "#000"}}>Cancelar</Button>
+                                        </div>
                                     </td>
                                 </tr>
                             )
