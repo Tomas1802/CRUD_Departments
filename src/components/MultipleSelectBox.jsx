@@ -33,7 +33,7 @@ export default function MultipleSelectBox(props) {
     },[])
 
     function fetchListData(header) {
-        return fetch(`https://tomasparra.azurewebsites.net/api/${capitalizeFirstLetter(header)}/Get${capitalizeFirstLetter(header)}s`, {
+        return fetch(`https://localhost:7117/api/${capitalizeFirstLetter(header)}/Get${capitalizeFirstLetter(header)}s`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })

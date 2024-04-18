@@ -6,7 +6,7 @@ import TableHelper from "./components/TableHelper";
 import { tablaDepartamentos, tablaMunicipios, tablaPersonas, tablaViviendas, tablaServicios } from "./utils/formData";
 import 'react-toastify/dist/ReactToastify.css';
 import ToastifyMessage from "./components/ToastifyMessage";
-import { getRoute, postRouteReview } from "./services/Requests";
+import { getRoute, getRouteNota, postRouteReview } from "./services/Requests";
 
 function App() {
     const [notification, setNotification] = React.useState({});
@@ -96,6 +96,45 @@ function App() {
         setNotification({text: `Hola, soy ${name}, y yo ${result.find(r => r.nombre === name) ? "revisé este trabajo" : "NO he revisado este trabajo"}`, type: `${result.find(r => r.nombre === name) ? "success" : "error"}`})
     }
 
+    const QualifyWork = async () => {
+        const code = window.prompt("Nota:");
+        
+        if (!isNaN(parseFloat(code))) 
+        {
+            if(parseFloat(code) <= 0)
+            {
+                setNotification({text: "Profe tampoco estuvo tan mal :(", type: "error"});
+                return;
+            }
+
+            if(parseFloat(code) < 3)
+            {
+                const confirmCancel = window.confirm("¿Seguro profe? No está tan mal :(");
+
+                if (!confirmCancel) {
+                    setNotification({text: "Gracias por pensarlo :D", type: "success"});
+                    return;
+                }
+
+                setNotification({text: "Eres cruel pero justo :(", type: "error"});
+            }
+
+            const result = await postRouteReview({nombre: "nota de " + code, revisado: true}, "nota de " + code);
+            if (result) 
+            {
+                setNotification({text: "Gracias por la nota profe :D", type: "success"});
+            }
+        } else {
+            setNotification({text: "Profe digite un número porfa", type: "error"});
+        }
+    }
+
+    async function ShowQualify()
+    {
+        const result = await getRouteNota()
+        setNotification({text: `Hola, soy el profe Hernando, ${result.nombre ? `y este trabajo tiene una ${result.nombre}` : "aún no he calificado este trabajo"}`, type: `${result.nombre ? "success" : "error"}`})
+    }
+
     const reviewWork = async (name) => {
         const code = window.prompt("Contraseña:");
         
@@ -153,6 +192,13 @@ function App() {
                             <div>
                                 <Button variant="contained" onClick={() => checkWork("Sebastian")} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
                                 <Button variant="contained" onClick={() => reviewWork("Sebastian")} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
+                            </div>
+                        </li>
+                        <li style={{display: "flex", justifyContent: "space-between", marginBottom: "10px"}}>
+                            <p>Hernando Rodriguez</p>
+                            <div>
+                                <Button variant="contained" onClick={() => ShowQualify()} style={{background: "#f7b4a7", color: "black"}}>Hablar</Button>
+                                <Button variant="contained" onClick={() => QualifyWork()} style={{background: "green", color: "white", marginLeft: "10px"}}>Revisar</Button>
                             </div>
                         </li>
                     </ol>
